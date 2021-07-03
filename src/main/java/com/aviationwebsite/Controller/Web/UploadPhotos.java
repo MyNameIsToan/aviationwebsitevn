@@ -34,7 +34,7 @@ public class UploadPhotos extends HttpServlet {
 
 	public void init() {
 		// Get the file location where it would be stored.
-		filePath = ".\\src\\main\\webapp\\image";
+		filePath = ".\\image";
 	}
 
 	public UploadPhotos() {

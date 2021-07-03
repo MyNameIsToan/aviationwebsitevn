@@ -63,7 +63,7 @@ public class UploadPhotos extends HttpServlet {
 			}else {
 				System.out.println("Failed");
 			}
-			String filePath = "..\\src\\main\\webapp\\image" + Photo;
+			String filePath = ".\\image\\" + Photo;
 			File file = new File(filePath);
 	        if(file.delete())
 	        {
