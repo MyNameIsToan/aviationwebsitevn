@@ -15,14 +15,10 @@ import com.aviationwebsite.Model.Photo;
 public class PhotoDAO implements IPhotoDAO{
 	public Connection getConnection() {
 		try {
-			Class.forName("org.postgresql.Driver");
-			String url = "jdbc:postgres://ec2-3-89-0-52.compute-1.amazonaws.com:5432/d3d5fef9j9e3kf?sslmode=require";
-			String username = "uarltosuvjpcmt";
-			String password = "7e894efef73a0df555b579bcc600e5069a0349893a00c9f1a7f01c5abaad0eab";
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			//String url = "jdbc:mysql://localhost:3306/aviationwebsite";
-			//String username = "root";
-			//String password = "Toan3006";
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/aviationwebsite";
+			String username = "root";
+			String password = "Toan3006";
 			return DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;

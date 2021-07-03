@@ -11,15 +11,11 @@ import com.aviationwebsite.DAO.IUserDAO;
 public class UserDAO implements IUserDAO{
 	public Connection getConnection() {
 		try {
-			Class.forName("org.postgresql.Driver");
-			String url = "jdbc:postgres://ec2-3-89-0-52.compute-1.amazonaws.com:5432/d3d5fef9j9e3kf?sslmode=require";
-			String username = "uarltosuvjpcmt";
-			String password = "7e894efef73a0df555b579bcc600e5069a0349893a00c9f1a7f01c5abaad0eab";
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			//String url = "jdbc:mysql://localhost:3306/aviationwebsite";
-			//String username = "root";
-			//String password = "Toan3006";
-			return DriverManager.getConnection(url, username, password);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/aviationwebsite";
+			String username = "root";
+			String password = "Toan3006";
+			return DriverManager.getConnection(url,username,password);
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;
 		}
@@ -31,7 +27,7 @@ public class UserDAO implements IUserDAO{
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			String Sql = "SELECT * FROM ACCOUNT WHERE Username = ? AND Password = ?";
+			String Sql = "SELECT * FROM user WHERE Username = ? AND Password = ?";
 			statement = connection.prepareStatement(Sql);
 			statement.setString(1, username);
 			statement.setString(2, password);
@@ -65,7 +61,7 @@ public class UserDAO implements IUserDAO{
 		PreparedStatement statement = null;
 		try {
 			connection.setAutoCommit(false);
-			String Sql = "INSERT INTO ACCOUNT VALUES (?,?,?)";
+			String Sql = "INSERT INTO user VALUES (?,?,?)";
 			statement = connection.prepareStatement(Sql);
 			statement.setString(1, username);
 			statement.setString(2, password);
@@ -100,7 +96,7 @@ public class UserDAO implements IUserDAO{
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			String Sql = "SELECT * FROM ACCOUNT WHERE Username = ?";
+			String Sql = "SELECT * FROM user WHERE Username = ?";
 			statement = connection.prepareStatement(Sql);
 			statement.setString(1, username);
 			resultSet = statement.executeQuery();
