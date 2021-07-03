@@ -63,7 +63,7 @@ public class UploadPhotos extends HttpServlet {
 			}else {
 				System.out.println("Failed");
 			}
-			String filePath = ".\\AviationWebsite\\AviationWebsite\\src\\main\\webapp\\image\\" + Photo;
+			String filePath = "..\\src\\main\\webapp\\image" + Photo;
 			File file = new File(filePath);
 	        if(file.delete())
 	        {
