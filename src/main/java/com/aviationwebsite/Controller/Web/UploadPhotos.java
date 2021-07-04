@@ -33,7 +33,7 @@ public class UploadPhotos extends HttpServlet {
 
 	public void init() {
 		// Get the file location where it would be stored.
-		filePath = "..\\image";
+		filePath = "/image";
 	}
 
 	public UploadPhotos() {
@@ -92,7 +92,7 @@ public class UploadPhotos extends HttpServlet {
 								+ registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
 										fileName.substring(fileName.lastIndexOf("\\")).length());
 					} else {
-						file = new File(filePath + "\\" + username + registration + fileName);
+						file = new File(filePath + "/" + username + registration + fileName);
 						photo = username + registration + fileName;
 					}
 					item.write(file);
