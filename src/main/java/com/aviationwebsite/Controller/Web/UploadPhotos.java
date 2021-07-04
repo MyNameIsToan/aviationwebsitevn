@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -28,13 +29,7 @@ public class UploadPhotos extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 2368846296585843637L;
 	private QueueService queueService;
-	private String filePath;
 	private File file;
-
-	public void init() {
-		// Get the file location where it would be stored.
-		filePath = ".\\AviationWebsite - Copy\\AviationWebsite\\src\\main\\webapp\\image";
-	}
 
 	public UploadPhotos() {
 		queueService = new QueueService();
@@ -80,9 +75,11 @@ public class UploadPhotos extends HttpServlet {
 	                }
 	            }else {
 	                // Process form file field (input type="file").
+					String realPath = getServletContext().getRealPath("image");
+					System.out.println(realPath);
 	                String fileName = item.getName();
 					if (fileName.lastIndexOf("\\") >= 0) {
-						file = new File(filePath + fileName.substring(fileName.lastIndexOf("\\")).substring(0, 1)
+						file = new File(realPath + fileName.substring(fileName.lastIndexOf("\\")).substring(0, 1)
 								+ username + registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
 										fileName.substring(fileName.lastIndexOf("\\")).length()));
 						System.out.println(fileName.substring(fileName.lastIndexOf("\\")).substring(1, 1) + username
@@ -92,7 +89,7 @@ public class UploadPhotos extends HttpServlet {
 								+ registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
 										fileName.substring(fileName.lastIndexOf("\\")).length());
 					} else {
-						file = new File(filePath + "\\" + username + registration + fileName);
+						file = new File(realPath + "\\" + username + registration + fileName);
 						photo = username + registration + fileName;
 					}
 					item.write(file);
