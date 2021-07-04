@@ -92,8 +92,8 @@ public class UploadPhotos extends HttpServlet {
 								+ username + registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
 										fileName.substring(fileName.lastIndexOf("\\")).length()));
 					} else {
-						file = new File(realPath + "\\" + username + registration + fileName);
-						req.setAttribute("path",realPath + "\\" + username + registration + fileName);
+						file = new File(realPath + "/" + username + registration + fileName);
+						req.setAttribute("path",realPath + "/" + username + registration + fileName);
 						photo = username + registration + fileName;
 					}
 					item.write(file);
