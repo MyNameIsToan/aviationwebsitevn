@@ -103,7 +103,7 @@ public class UploadPhotos extends HttpServlet {
 			}else {
 				System.out.println("failed");
 			}
-			resp.sendredirect("./views/web/Upload/index.jsp");
+			resp.sendRedirect("./views/web/Upload/index.jsp");
 		} catch (Exception e) {
 			return;
 		}      		

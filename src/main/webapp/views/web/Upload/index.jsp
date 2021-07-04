@@ -34,7 +34,7 @@
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-		 <h2 class="title">UPLOAD YOUR PHOTOS HERE !</h2>
+                    <h2 class="title">UPLOAD YOUR PHOTOS HERE !</h2>
                     <form action="../../../uploadphoto" method="post" enctype="multipart/form-data">
                         <div class="row row-space">
                             <div class="col-2">
