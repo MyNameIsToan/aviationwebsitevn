@@ -76,7 +76,7 @@ public class UploadPhotos extends HttpServlet {
 	            }else {
 	                // Process form file field (input type="file").
 					String realPath = getServletContext().getRealPath("image");
-					req.setAttribute("path",realPath);
+					
 	                String fileName = item.getName();
 					if (fileName.lastIndexOf("\\") >= 0) {
 						file = new File(realPath + fileName.substring(fileName.lastIndexOf("\\")).substring(0, 1)
@@ -88,8 +88,12 @@ public class UploadPhotos extends HttpServlet {
 						photo = fileName.substring(fileName.lastIndexOf("\\")).substring(1, 1) + username
 								+ registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
 										fileName.substring(fileName.lastIndexOf("\\")).length());
+						req.setAttribute("path",realPath + fileName.substring(fileName.lastIndexOf("\\")).substring(0, 1)
+								+ username + registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
+										fileName.substring(fileName.lastIndexOf("\\")).length()));
 					} else {
 						file = new File(realPath + "\\" + username + registration + fileName);
+						req.setAttribute("path",realPath + "\\" + username + registration + fileName);
 						photo = username + registration + fileName;
 					}
 					item.write(file);
