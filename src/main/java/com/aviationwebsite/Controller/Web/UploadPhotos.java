@@ -33,7 +33,7 @@ public class UploadPhotos extends HttpServlet {
 
 	public void init() {
 		// Get the file location where it would be stored.
-		filePath = "/image";
+		filePath = ".\\AviationWebsite - Copy\\AviationWebsite\\src\\main\\webapp\\image";
 	}
 
 	public UploadPhotos() {
@@ -92,18 +92,17 @@ public class UploadPhotos extends HttpServlet {
 								+ registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
 										fileName.substring(fileName.lastIndexOf("\\")).length());
 					} else {
-						file = new File(filePath + "/" + username + registration + fileName);
+						file = new File(filePath + "\\" + username + registration + fileName);
 						photo = username + registration + fileName;
 					}
 					item.write(file);
-					req.setAttribute("path", file.getAbsolutePath());
 	              }
 	        }
-//			if(queueService.UploadPhoto(username, photo, airlines, aircraft, registration, location, Timestamp.valueOf(takendate), Timestamp.valueOf(uploaddate)) == 1){
-//				System.out.println("success");
-//			}else {
-//				System.out.println("failed");
-//			}
+			if(queueService.UploadPhoto(username, photo, airlines, aircraft, registration, location, Timestamp.valueOf(takendate), Timestamp.valueOf(uploaddate)) == 1){
+				System.out.println("success");
+			}else {
+				System.out.println("failed");
+			}
 			RequestDispatcher rd = req.getRequestDispatcher("./views/web/Upload/index.jsp");
 			rd.forward(req, resp);
 		} catch (Exception e) {
