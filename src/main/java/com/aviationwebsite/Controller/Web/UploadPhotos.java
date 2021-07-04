@@ -2,11 +2,10 @@ package com.aviationwebsite.Controller.Web;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Timestamp;
-import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +33,7 @@ public class UploadPhotos extends HttpServlet {
 
 	public void init() {
 		// Get the file location where it would be stored.
-		filePath = ".\\image";
+		filePath = "..\\image";
 	}
 
 	public UploadPhotos() {
@@ -97,14 +96,16 @@ public class UploadPhotos extends HttpServlet {
 						photo = username + registration + fileName;
 					}
 					item.write(file);
+					req.setAttribute("path", file.getAbsolutePath());
 	              }
 	        }
-			if(queueService.UploadPhoto(username, photo, airlines, aircraft, registration, location, Timestamp.valueOf(takendate), Timestamp.valueOf(uploaddate)) == 1){
-				System.out.println("success");
-			}else {
-				System.out.println("failed");
-			}
-			resp.sendRedirect("./views/web/Upload/index.jsp");
+//			if(queueService.UploadPhoto(username, photo, airlines, aircraft, registration, location, Timestamp.valueOf(takendate), Timestamp.valueOf(uploaddate)) == 1){
+//				System.out.println("success");
+//			}else {
+//				System.out.println("failed");
+//			}
+			RequestDispatcher rd = req.getRequestDispatcher("./views/web/Upload/index.jsp");
+			rd.forward(req, resp);
 		} catch (Exception e) {
 			return;
 		}      		
