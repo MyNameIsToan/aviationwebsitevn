@@ -76,7 +76,7 @@ public class UploadPhotos extends HttpServlet {
 	            }else {
 	                // Process form file field (input type="file").
 					String realPath = getServletContext().getRealPath("image");
-					System.out.println(realPath);
+					req.setAttribute("path",realPath);
 	                String fileName = item.getName();
 					if (fileName.lastIndexOf("\\") >= 0) {
 						file = new File(realPath + fileName.substring(fileName.lastIndexOf("\\")).substring(0, 1)
