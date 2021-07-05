@@ -21,7 +21,7 @@ th, td {
 	<table style="width: 100%">
 		<c:forEach var="item" items="${model.getListResult()}">
 			<tr>
-				<td><img src="./image/${item.getPhoto()}" width="320px" height="180px"/>
+				<td><img src="data:image/jpeg;base64,${item.getPhoto()}" width="320px" height="180px"/>
 				</td>
 				<td>
 					${item.username}<br/>

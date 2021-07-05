@@ -26,6 +26,8 @@
 
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
+    <script type="text/javascript">
+</script>
 </head>
 
 <body>

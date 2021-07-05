@@ -106,7 +106,7 @@ li a:hover {
 	<div class="content">
 	<c:forEach var="item" items="${model.getListPhotos()}">
 		<div class="card">
-  			<img src="./image/${item.getPhoto()}" alt="Avatar" style="width:100%">
+  			<img src="data:image/jpeg;base64,${item.getPhoto()}" alt="Avatar" style="width:100%">
   			<div class="container">
    				<p>
 					${item.username}<br/>

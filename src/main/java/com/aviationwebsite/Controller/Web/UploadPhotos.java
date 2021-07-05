@@ -1,12 +1,17 @@
 package com.aviationwebsite.Controller.Web;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -29,8 +34,6 @@ public class UploadPhotos extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 2368846296585843637L;
 	private QueueService queueService;
-	private File file;
-
 	public UploadPhotos() {
 		queueService = new QueueService();
 	}
@@ -74,25 +77,16 @@ public class UploadPhotos extends HttpServlet {
 	                	uploaddate = fieldvalue + " 00:00:00";
 	                }
 	            }else {
-	                // Process form file field (input type="file").
-					String realPath = getServletContext().getRealPath("image");
-					System.out.println(realPath);
-	                String fileName = item.getName();
-					if (fileName.lastIndexOf("\\") >= 0) {
-						file = new File(realPath + fileName.substring(fileName.lastIndexOf("\\")).substring(0, 1)
-								+ username + registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
-										fileName.substring(fileName.lastIndexOf("\\")).length()));
-						System.out.println(fileName.substring(fileName.lastIndexOf("\\")).substring(1, 1) + username
-								+ registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
-										fileName.substring(fileName.lastIndexOf("\\")).length()));
-						photo = fileName.substring(fileName.lastIndexOf("\\")).substring(1, 1) + username
-								+ registration + fileName.substring(fileName.lastIndexOf("\\")).substring(1,
-										fileName.substring(fileName.lastIndexOf("\\")).length());
-					} else {
-						file = new File(realPath + "\\" + username + registration + fileName);
-						photo = username + registration + fileName;
+					InputStream input = item.getInputStream();
+					try {
+						BufferedImage sourceimage = ImageIO.read(input);
+						ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+						ImageIO.write(sourceimage, "jpg", bytes);
+						String result = Base64.getEncoder().encodeToString(bytes.toByteArray());
+						photo = result;
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-					item.write(file);
 	              }
 	        }
 			if(queueService.UploadPhoto(username, photo, airlines, aircraft, registration, location, Timestamp.valueOf(takendate), Timestamp.valueOf(uploaddate)) == 1){

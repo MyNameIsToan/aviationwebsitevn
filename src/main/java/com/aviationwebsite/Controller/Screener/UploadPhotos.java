@@ -63,16 +63,6 @@ public class UploadPhotos extends HttpServlet {
 			}else {
 				System.out.println("Failed");
 			}
-			String filePath = ".\\image\\" + Photo;
-			File file = new File(filePath);
-	        if(file.delete())
-	        {
-	            System.out.println("File deleted successfully");
-	        }
-	        else
-	        {
-	            System.out.println("Failed to delete the file");
-	        }
 		}	
 		resp.sendRedirect("./screener-controll");
 	}

@@ -12,9 +12,9 @@ public class UserDAO implements IUserDAO{
 	public Connection getConnection() {
 		try {
 			Class.forName("org.postgresql.Driver");
-			String url = "jdbc:postgresql://ec2-3-89-0-52.compute-1.amazonaws.com:5432/ddeev3pcmfh82j?sslmode=require";
-			String username = "opmtyjdckrwqrs";
-			String password = "da9a0aeda9103f5a22b1ae7032e94855b19487c4fe9b63c3f178237ee75cdcf4";
+			String url = "jdbc:postgresql://ec2-52-2-118-38.compute-1.amazonaws.com:5432/d935im5t85nmc0?sslmode=require";
+			String username = "cjskovdfuzartw";
+			String password = "401ed8c0ffd9d48dfe49fb40ca848730cb545f417e02f9faa3f959cd9c78e51c";
 			return DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;
