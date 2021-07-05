@@ -13,33 +13,29 @@ import javax.servlet.http.HttpSession;
 import com.aviationwebsite.Model.Photo;
 import com.aviationwebsite.SERVICE.Implement.PhotoService;
 import com.aviationwebsite.constant.SystemConstant;
-@WebServlet(urlPatterns = {"/homepage"})
-public class HomeController extends HttpServlet{
+
+@WebServlet(urlPatterns = {"/Profile"})
+public class Profile extends HttpServlet{
 	private PhotoService photoService;
 	
-	public HomeController() {
+	public Profile() {
 		this.photoService = new PhotoService();
 	}
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Photo photo = new Photo();
-		photo.setListPhotos(photoService.findAll()); 
-		req.setAttribute(SystemConstant.MODEL, photo);
 		HttpSession httpSession = req.getSession();
 		Object obj = httpSession.getAttribute("session");
 		if(obj != null)
 		{
-			req.setAttribute("condition", "1");
+				String Username = String.valueOf(obj);
+				Photo photo = new Photo();
+				photo.setListPhotos(photoService.findMyPhoto(Username)); 
+				req.setAttribute(SystemConstant.MODEL, photo);
+				RequestDispatcher rd = req.getRequestDispatcher("./views/web/Profile/profile.jsp");
+				rd.forward(req, resp);
 		}else {
-			req.setAttribute("condition", "0");
+			resp.sendRedirect("./views/web/Login/index.jsp");
+			return;
 		}
-		RequestDispatcher rd = req.getRequestDispatcher("/views/web/Homepage/homepage.jsp");
-		rd.forward(req, resp);
-	}
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
 	}
 }

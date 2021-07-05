@@ -80,6 +80,8 @@
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Upload</button>
                         </div>
+                        <br/>
+                        <a href="../../../homepage">Back to homepage</a>
                     </form>
                 </div>
             </div>
