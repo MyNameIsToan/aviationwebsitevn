@@ -23,8 +23,6 @@ public class HomeController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = getServletContext().getRealPath("src");
-		req.setAttribute("path", path);
 		Photo photo = new Photo();
 		photo.setListPhotos(photoService.findAll()); 
 		req.setAttribute(SystemConstant.MODEL, photo);
