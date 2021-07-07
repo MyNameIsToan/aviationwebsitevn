@@ -12,7 +12,7 @@
 		<meta property="og:type"               content="image/jpeg" />
 		<meta property="og:title"              content="${model.airlines} | ${model.aircraft} | ${model.registration}" />
 		<meta property="og:description"        content="" />
-		<meta property="og:image"              content="data:image/jpeg;base64,${model.getPhoto()}" />
+		<meta property="og:image"              content="https://www.solidbackgrounds.com/images/2560x1440/2560x1440-gray-solid-color-background.jpg" />
         <title>Aviation Website</title>
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
