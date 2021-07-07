@@ -48,7 +48,6 @@
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">AVIATION WEBSITE</h1>
                     <p class="lead fw-normal text-white-50 mb-0">AN AVIATION PHOTOS SYSTEM</p>
-                    <p class="lead fw-normal text-white-50 mb-0"><%=request.getAttribute("path")%></p>
                 </div>
             </div>
         </header>
