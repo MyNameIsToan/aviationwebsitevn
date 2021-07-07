@@ -24,7 +24,7 @@ public class Decode extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String photo = req.getParameter("photo");
 		Photo returnphoto = photoService.findPhoto(Long.valueOf(photo));
-		String name = "echo $HOME/tmp" + photo + "decode.jpg";
+		String name = "echo $HOME/" + photo + "decode.jpg";
 		try (FileOutputStream imageOutFile = new FileOutputStream(name)) {
 			// Converting a Base64 String into Image byte array
 			byte[] imageByteArray = Base64.getDecoder().decode(returnphoto.getPhoto());
